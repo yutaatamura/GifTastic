@@ -54,8 +54,10 @@ $(document).ready(function() {
                     var gifRowWrap = $("<div>");
                     gifRowWrap.attr("class", "row");
                     gifRowWrap.attr("id", "gifRow"+rowIndex);
-                    console.log('i am rowIndex='+rowIndex)
-                    $('#gifRow'+rowIndex).append(gifDivWrap);
+                    console.log('i am rowIndex='+rowIndex);
+                    // not working 
+                    $('#gif-container').find('#gifRow'+rowIndex).append(gifDivWrap);
+                    // $('#gifRow'+rowIndex).append(gifDivWrap);
                     console.log('i appended the div')
                     var gifDivWrap = $("<div>");
                     gifDivWrap.attr("class", "col-md-3");

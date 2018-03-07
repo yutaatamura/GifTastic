@@ -32,12 +32,11 @@ $(document).ready(function() {
         var rowIndex = 0;
         var colIndex = 0;
             for (var i = 0; i<gifResults.length;i++) {
-                var stillGif = gifResults[i].images.fixed_height_small_still.url;
-                var dynamicGif = gifResults[i].images.fixed_height_small.url;
+                var stillGif = gifResults[i].images.original_still.url;
+                // fixed_height_small_still.url;
+                var dynamicGif = gifResults[i].images.original.url;
+                // fixed_height_small.url;
                 var rating = gifResults[i].rating;
-    
-                
-                
     
                 var showGif = $("<img>");   
                 showGif.attr("src", stillGif);
@@ -45,29 +44,36 @@ $(document).ready(function() {
                 showGif.attr("class", "topicGif img-thumbnail");
                 showGif.attr("data-dynamic", dynamicGif);
                 showGif.attr("data-index", i);
+
+                var gifDivWrap = $("<div>");
+                gifDivWrap.attr("class", "col-md-3");
+                gifDivWrap.attr("id", "gifDiv"+i);
             
                 if (colIndex === 4 || colIndex === 0) {
-                    colIndex === 0;
+                    colIndex = 0;
                     console.log('i am colIndex='+colIndex)
-                    $('#gif-container').append(gifRowWrap);
-                    
+                    // $('#gif-container').append(gifRowWrap);
+                    rowIndex++;
                     var gifRowWrap = $("<div>");
                     gifRowWrap.attr("class", "row");
                     gifRowWrap.attr("id", "gifRow"+rowIndex);
                     console.log('i am rowIndex='+rowIndex);
+
                     // not working 
-                    $('#gif-container').find('#gifRow'+rowIndex).append(gifDivWrap);
+                    // $('#gif-container').find('#gifRow'+rowIndex).append(gifDivWrap);
                     // $('#gifRow'+rowIndex).append(gifDivWrap);
-                    console.log('i appended the div')
-                    var gifDivWrap = $("<div>");
-                    gifDivWrap.attr("class", "col-md-3");
-                    gifDivWrap.attr("id", "gifDiv"+i);
+                    
+                    //Have to create div row and div col in JS, then append to HTML. Appending the Row first, then trying to append the col div afterwards did not work. 
+                    var kitty = gifRowWrap.append(gifDivWrap);
+                    $('#gif-container').append(kitty);
+                    
                     colIndex++;
                     console.log(colIndex)
-                    rowIndex++;
+                    
                     $('#gifDiv'+i).append(showGif);
                     $('#gifDiv'+i).append("<p> Rating: " + rating + "</p>");
                 } else {
+
                     $('#gifRow'+rowIndex).append(gifDivWrap);
                     colIndex++;
                     console.log('colindex is='+colIndex)

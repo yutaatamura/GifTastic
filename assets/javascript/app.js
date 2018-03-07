@@ -46,16 +46,15 @@ $(document).ready(function() {
                 showGif.attr("data-index", i);
 
                 var gifDivWrap = $("<div>");
-                gifDivWrap.attr("class", "col-md-3");
+                gifDivWrap.attr("class", "col-md-3 "+topic+"");
                 gifDivWrap.attr("id", "gifDiv"+i);
-            
                 if (colIndex === 4 || colIndex === 0) {
                     colIndex = 0;
                     console.log('i am colIndex='+colIndex)
                     // $('#gif-container').append(gifRowWrap);
                     rowIndex++;
                     var gifRowWrap = $("<div>");
-                    gifRowWrap.attr("class", "row");
+                    gifRowWrap.attr("class", "row "+topic+"");
                     gifRowWrap.attr("id", "gifRow"+rowIndex);
                     console.log('i am rowIndex='+rowIndex);
 
@@ -105,10 +104,11 @@ $(document).ready(function() {
 
     $('#delete-topic').on("click", function(event) {
         event.preventDefault();
-        console.log(topics)
-        topics.pop();
-        console.log(topics)
+        var topic = topics.pop();
         createButtons();
+        // $('.'+topic+'').remove();
+        $('.'+topic+'').remove();
+    
     })
 
     $(document).on("click", ".topic-btn", displayGif);  

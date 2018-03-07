@@ -2,3 +2,9 @@
     width: 150px;
     height: 150px !important;
 }
+
+#messageDiv {
+    text-align: left;
+    height: 25px;
+    color: red;
+}

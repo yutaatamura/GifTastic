@@ -90,7 +90,15 @@ $(document).ready(function() {
         event.preventDefault();
         var topic = $('#topic-input').val().trim();
         topics.push(topic);
+        if (topic === null || topic === "") {
+            $('#messageDiv').text("Please input a topic!");
+            console.log(topics)
+            //removes the last item in the array
+            topics.pop();
+            return;
+        } else {
         createButtons();
+        }
     })
 
     $(document).on("click", ".topic-btn", displayGif);  

@@ -7,7 +7,7 @@ $(document).ready(function() {
 
         for (var i=0; i< topics.length; i++) {
             var button = $("<button>");
-            button.addClass("topic-btn");
+            button.addClass("topic-btn btn btn-info");
             button.attr("data-name", topics[i]);
             button.text(topics[i]);
             $('#buttons-container').append(button);
@@ -96,9 +96,19 @@ $(document).ready(function() {
             //removes the last item in the array
             topics.pop();
             return;
-        } else {
+        } else {    
         createButtons();
+        //Clear the input field box after each submit
+        $('#topic-input').val('');
         }
+    })
+
+    $('#delete-topic').on("click", function(event) {
+        event.preventDefault();
+        console.log(topics)
+        topics.pop();
+        console.log(topics)
+        createButtons();
     })
 
     $(document).on("click", ".topic-btn", displayGif);  

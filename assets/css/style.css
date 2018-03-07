@@ -1,5 +1,5 @@
 .img-thumbnail {
-    width: 150px;
+    width: 100% !important;
     height: 150px !important;
 }
 
@@ -7,4 +7,17 @@
     text-align: left;
     height: 25px;
     color: red;
+}
+
+.topic-btn {
+    margin-left: 10px;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.topic-btn:hover {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+#gif-container {
+    margin-top: 15px;
 }

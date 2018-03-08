@@ -32,10 +32,7 @@ $(document).ready(function() {
         lastClick = $(this).attr("data-name");
         console.log("lastclick="+lastClick)
         
-        for (var i=0; i<clicked.length; i++) {
-            $("button[data-name=\""+clicked[i]+"\"]").prop("disabled", true);
-            console.log("clicked"+clicked);
-        }
+        hideClickedBtn();
 
         $.ajax({
             url: queryURL,
@@ -132,9 +129,7 @@ $(document).ready(function() {
             return;
         } else {    
         createButtons();
-        for (var i=0; i<clicked.length; i++) {
-            $("button[data-name=\""+clicked[i]+"\"]").prop("disabled", true);
-        }
+        hideClickedBtn();
         //Clear the input field box after each submit
         $('#topic-input').val('');
         }
@@ -148,9 +143,7 @@ $(document).ready(function() {
             arraySplice();
             console.log("remaining in topics array="+topics)
             createButtons();
-            for (var i=0; i<clicked.length; i++) {
-                $("button[data-name=\""+clicked[i]+"\"]").prop("disabled", true);
-            }
+            hideClickedBtn();
         } else {
             $('#messageDiv').text("You have already removed the last topic. Create another topic or click an existing button!");
             setTimeout(clearMessage, 5000);
@@ -183,6 +176,12 @@ $(document).ready(function() {
         topics = [];
         clicked = [];
     });
+
+    function hideClickedBtn() {
+        for (var i=0; i<clicked.length; i++) {
+            $("button[data-name=\""+clicked[i]+"\"]").prop("disabled", true);
+        }
+    }
 
     $(document).on("click", ".topic-btn", displayGif);  
 

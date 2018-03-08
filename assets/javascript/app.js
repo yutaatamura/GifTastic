@@ -4,6 +4,7 @@ $(document).ready(function() {
     var rowIndex = 0;
     var colIndex = 0;
     var lastClick;
+    var clicked = [];
 
     function createButtons() {
         $('#buttons-container').empty();
@@ -19,14 +20,22 @@ $(document).ready(function() {
 
 
     function displayGif() {
-
+        // for (var i=0; i<topics.length; i++) {
+        //         console.log("im in")
+        //         $("button[data-name=\""+topics[i]+"\"]").prop("disabled", true);
+        //     }
+        clicked.push($(this).attr("data-name"))
         var topic = $(this).attr("data-name");  
         console.log(topic);
         var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=641SVLMQJGCVM4YinHwMvsgdZ3Sd1RJi&limit=10";
         console.log(queryURL); 
         lastClick = $(this).attr("data-name");
         console.log("lastclick="+lastClick)
-         
+        
+        for (var i=0; i<clicked.length; i++) {
+            $("button[data-name=\""+clicked[i]+"\"]").prop("disabled", true);
+            console.log("clicked"+clicked);
+        }
 
         $.ajax({
             url: queryURL,
@@ -101,8 +110,11 @@ $(document).ready(function() {
         event.preventDefault();
         var topic = $('#topic-input').val().trim();
         var search = topics.indexOf(topic);
+
         if (search !== -1) {
             $('#messageDiv').text("You have already created this topic! Try another.");
+            $('#topic-input').val('');
+            setTimeout(clearMessage, 5000);
             topics.pop();
             return;
         }
@@ -113,12 +125,16 @@ $(document).ready(function() {
         console.log("search="+search)
         if (topic === null || topic === "") {
             $('#messageDiv').text("Please input a topic!");
+            setTimeout(clearMessage, 5000);
             console.log(topics)
             //removes the last item in the array
             topics.pop();
             return;
         } else {    
         createButtons();
+        for (var i=0; i<clicked.length; i++) {
+            $("button[data-name=\""+clicked[i]+"\"]").prop("disabled", true);
+        }
         //Clear the input field box after each submit
         $('#topic-input').val('');
         }
@@ -126,25 +142,47 @@ $(document).ready(function() {
 
     $('#delete-topic').on("click", function(event) {
         event.preventDefault();
-        console.log("topics array="+topics)
-        createButtons();
-        console.log("i will delete lastclick="+lastClick)
-        // $('.'+topic+'').remove();
-        $('.'+lastClick+'').remove();
-        
-        
-        arraySplice();
-        console.log("remaining in topics array="+topics)
+        var deletedTopic = topics.indexOf(lastClick);
+        if (deletedTopic !== -1) {
+            $('.'+lastClick+'').remove();
+            arraySplice();
+            console.log("remaining in topics array="+topics)
+            createButtons();
+            for (var i=0; i<clicked.length; i++) {
+                $("button[data-name=\""+clicked[i]+"\"]").prop("disabled", true);
+            }
+        } else {
+            $('#messageDiv').text("You have already removed the last topic. Create another topic or click an existing button!");
+            setTimeout(clearMessage, 5000);
+        }
     
     })
 
     function arraySplice() {
         console.log("i am in arraySplice and lastclick is="+lastClick)
         var index = topics.indexOf(lastClick);
+        var clickedIndex = clicked.indexOf(lastClick)
+        console.log("clicked array before:"+clicked)
         if (index !== -1) {
             topics.splice(index, 1);
         }
+        if (clickedIndex !== -1) {
+            clicked.splice(clickedIndex, 1)
+            console.log("clicked array after:"+clicked)
+        }
     }
+
+    function clearMessage() {
+        $('#messageDiv').text("");
+    }
+
+    $('#clearBtns').on("click", function(event) {
+        event.preventDefault();
+        $('.topic-btn').remove();
+        $('#gif-container').empty();
+        topics = [];
+        clicked = [];
+    });
 
     $(document).on("click", ".topic-btn", displayGif);  
 

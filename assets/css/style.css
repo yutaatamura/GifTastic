@@ -1,3 +1,18 @@
+body {
+    height: auto;
+    background-color: rgb(13, 96, 163)!important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.jumbotron {
+    background-image: url("https://i.imgur.com/xumHAbS.gif");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 .img-thumbnail {
     width: 100% !important;
     height: 150px !important;
@@ -25,3 +40,11 @@
 #buttons-container {
     height: 40px;
 }
+
+#contentWrap {
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+

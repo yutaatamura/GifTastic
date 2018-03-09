@@ -17,7 +17,7 @@ $(document).ready(function() {
         for (var i=0; i< topics.length; i++) {
             var button = $("<button>");
             //attach topic-btn class for future calls
-            button.addClass("topic-btn btn btn-info");
+            button.addClass("topic-btn btn btn-light");
             //attach a data-name attribute with the topic name for reference in displayGif function
             button.attr("data-name", topics[i]);
             //attach topic name as the button name
@@ -77,8 +77,8 @@ $(document).ready(function() {
 
                 //create column divs for each GIF; assign unique ID to each GIF
                 var gifDivWrap = $("<div>");
-                gifDivWrap.attr("class", "col-md-3 "+topic+"");
-                gifDivWrap.attr("id", topic+"gifDiv"+i);
+                    gifDivWrap.attr("class", "col-md-3 "+topic+"");
+                    gifDivWrap.attr("id", topic+"gifDiv"+i);
 
                 //if column index = 0 or 4, create new row
                 if (colIndex === 4 || colIndex === 0) {
@@ -88,9 +88,9 @@ $(document).ready(function() {
                     rowIndex++;
                     //create row divs for every 4 columns; assign rowIndex to each row to track
                     var gifRowWrap = $("<div>");
-                    gifRowWrap.attr("class", "row "+topic+"");
-                    gifRowWrap.attr("id", "gifRow"+rowIndex);
-                    console.log('i am rowIndex='+rowIndex);
+                        gifRowWrap.attr("class", "row "+topic+"");
+                        gifRowWrap.attr("id", "gifRow"+rowIndex);
+                        console.log('i am rowIndex='+rowIndex);
 
                     // not working 
                     // $('#gif-container').find('#gifRow'+rowIndex).append(gifDivWrap);
@@ -245,5 +245,5 @@ $(document).ready(function() {
         }
     })
 
-    
+
 })

@@ -35,7 +35,7 @@ $(document).ready(function() {
         //set up AJAX call arguments; interested in search query
         var topic = $(this).attr("data-name");  
         console.log(topic);
-        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=641SVLMQJGCVM4YinHwMvsgdZ3Sd1RJi&limit=10";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=641SVLMQJGCVM4YinHwMvsgdZ3Sd1RJi&limit=10";
         console.log(queryURL);
         
         //track which button was clicked last for reference to function that will allow user to delete the last clicked button and associated GIFs 

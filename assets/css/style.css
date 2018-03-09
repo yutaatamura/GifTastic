@@ -13,6 +13,10 @@ body {
     background-repeat: no-repeat;
 }
 
+p {
+    text-align: center;
+}
+
 .img-thumbnail {
     width: 100% !important;
     height: 150px !important;

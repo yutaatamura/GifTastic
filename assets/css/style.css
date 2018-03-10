@@ -18,6 +18,7 @@ body {
 p {
     text-align: center;
     font-weight:bold;
+    color: rgb(255, 251, 251);
 }
 
 .img-thumbnail {

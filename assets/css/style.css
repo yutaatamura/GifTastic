@@ -56,3 +56,6 @@ p {
     background-repeat: no-repeat;
 }
 
+.topicGif:hover {
+    box-shadow: 7px 7px 7px rgb(5,0,20);
+}
